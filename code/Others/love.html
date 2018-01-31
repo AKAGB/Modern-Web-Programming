@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Love</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="love">
+        <meta name="description" content="爱心日食">
+        <style>
+            * { /*通配符选择器*/
+                margin: 0;
+            }
+
+            html {
+                height: 100%;
+                --timing: 6s;    /*声明全局变量 动画时间*/
+            }
+
+            body {
+                display: grid;        /*网格布局*/
+                height: inherit;        /*让body的高度和 window 保持一致*/
+                background-color: skyblue;
+                animation: changeColor var(--timing) linear infinite;
+            }
+
+            p {
+                color: skyblue;
+                font-size: 20px;
+                text-align: center;
+                margin-left: 0px;
+            }
+
+            #wrap {
+                margin: auto;            /*自适应 居中*/
+                width: 100px;
+                height: 100px;
+            }
+
+            #wrap .love {
+                position: relative;
+                width: 200px;
+                height: 180px;
+            }
+
+            /*制作love爱心*/
+            #wrap .love:before, #wrap .love:after {
+                position: absolute;        /*绝对定位自动把元素变成块级元素*/
+                content: "";
+                width: 100px;
+                height: 150px;
+                background-color: yellow;
+                border-radius: 50px 50px 0 0;
+
+            }
+
+            #wrap .love:before {
+                left: 24px;
+                transform: rotate(-45deg);
+            }
+
+            #wrap .love:after {
+                left: 60px;
+                transform: rotate(45deg);
+            }
+
+            #wrap .love:nth-of-type(2) {    /*选择第二个爱心*/
+                transform: translateY(-180px) translateX(200px);    /*产生位移*/
+                /*css3 执行动画 参数: 动画名称 时间 运动曲线 运动次数*/
+                animation: move var(--timing) linear infinite;
+            }
+
+            #wrap .love:nth-of-type(2):before,
+            #wrap .love:nth-of-type(2):after {
+                background-color: skyblue;
+                animation: changeColor var(--timing) linear infinite;
+            }
+
+            /*css动画效果*/
+
+            @keyframes move {
+                0%{transform: translateY(-180px) translateX(200px);}
+                100%{transform: translateY(-180px) translateX(-200px);}
+            }
+
+            @keyframes changeColor {
+                0% {background-color: skyblue;}
+                50% {background-color: black;}
+                100% {background: skyblue;}
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            <div class="love"></div>
+            <div class="love"></div>
+        </div>
+    </body>
+</html>

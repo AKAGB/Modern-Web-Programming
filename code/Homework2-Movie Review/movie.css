@@ -1,0 +1,122 @@
+body {
+    font-size: 8pt;
+    font-family: Verdana, Tahoma, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    background: url(images/background.png);
+}
+
+div.banner {
+    background: url(images/bannerbackground.png);
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24pt;
+    font-weight: bold;
+    font-family: Tahoma, Verdana, sans-serif;
+}
+
+div.main {
+    width: 800px;
+    border: 4px gray solid;
+    margin: auto;
+}
+
+div.tableContainer {
+    display: table;
+
+}
+
+div.sectable {
+    display: table;
+    width: 550px;
+    border-spacing: 2%;
+}
+
+div.tableRow, div.sectableRow{
+    display: table-row;
+
+}
+
+div.tableCol, div.sectableCol {
+    vertical-align: top;
+    display: table-cell;
+}
+
+ div.sectableCol {
+    width: 47%;
+}
+
+div.rotten {
+    background: url(images/rottenbackground.png) repeat-x;
+    padding: 0px;
+    height: 83px;
+    color: #fff;
+}
+
+div.rotten img {
+    float: left;
+}
+
+span#rate32 {
+    font-size: 48pt;
+    font-weight: bold;
+    color: red;
+}
+
+p.page {
+    text-align: center;
+}
+
+.quote {
+    margin: 2%;
+    margin-bottom: 15%;
+}
+
+.quote img {
+    float: left;
+}
+
+.text {
+    margin: 2px;
+    padding: 5px;
+    border: gray 2px solid;
+    min-height: 25px;
+    clear: both;
+    font-size: 8pt;
+    font-weight: bold;
+    background: #e1d697;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
