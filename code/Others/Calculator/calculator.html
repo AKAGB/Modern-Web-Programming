@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="计算器">
+        <title>My Calculator</title>
+        <link rel="stylesheet" href="calculator.css">
+        <script src="calculator.js"></script>
+    </head>
+    <body>
+        <section id="main">
+            <div id="Calculator">
+                <div id="display">
+                    <input type="text" id="output" disabled="disabled"
+                         size="15" style="height: 100%; font-size: 40px; text-align: right;" >
+                </div>
+                <div id="button">
+                    <table>
+                        <tr>
+                            <td><input type="button" class="numbers" value="7" onclick="display(this)"></td>
+                            <td><input type="button" class="numbers" value="8" onclick="display(this)"></td>
+                            <td><input type="button" class="numbers" value="9" onclick="display(this)"></td>
+                            <td><input type="button" class="operator" value="/" onclick="display(this)"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="numbers" value="4" onclick="display(this)"></td>
+                            <td><input type="button" class="numbers" value="5" onclick="display(this)"></td>
+                            <td><input type="button" class="numbers" value="6" onclick="display(this)"></td>
+                            <td><input type="button" class="operator" value="*" onclick="display(this)"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="numbers" value="1" onclick="display(this)"></td>
+                            <td><input type="button" class="numbers" value="2" onclick="display(this)"></td>
+                            <td><input type="button" class="numbers" value="3" onclick="display(this)"></td>
+                            <td><input type="button" class="operator" value="-" onclick="display(this)"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="numbers" value="0" onclick="display(this)"></td>
+                            <td><input type="button" value="C" onclick="clearToken()"></td>
+                            <td><input type="button" value="<-" onclick="deleteToken()"></td>
+                            <td><input type="button" class="operator" value="+" onclick="display(this)"></td>
+                        </tr>
+                    </table>
+
+                    <input type="button" value="=" id="equality" onclick="Calc()">
+
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
