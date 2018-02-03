@@ -1,10 +1,12 @@
-* {
+* {        /*取消浏览器默认的内外边框间距*/
     margin: 0;
     padding: 0;
 }
 
 html {
     height: 100%;
+    --timing: 0.5s;
+    --delay: 0.3s;
 }
 
 body {
@@ -17,20 +19,90 @@ body {
     margin: auto;
 }
 
+/*设置 @+ 部分以及缩放功能*/
 .apb .icon {
     background-color: rgba(48, 63, 159, 0.4);
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    transition: all 1s;
     background-image: url(assets/images/atplus_white.png);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 80%;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    transition: all var(--timing) ease var(--delay);
 }
 
-.apb .icon:hover {
+#at-plus-container:hover .icon {
     background-color: rgba(48, 63, 159, 1);
-    height: 80px;
-    width: 80px;
+    height: 50px;
+    width: 50px;
     background-image: url(assets/images/atplus_green.png);
+    transition: all var(--timing) ease;
+}
+
+/*设置 li 几个功能性按钮的样式*/
+
+#control-ring {
+    position: relative;
+}
+
+#control-ring li {
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    background-color: rgba(51, 51, 51, 0.7);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    list-style-type: none;
+
+    /*隐藏功能栏*/
+    opacity: 1;
+    transition: all var(--timing);
+}
+
+/*显示功能栏*/
+#at-plus-container:hover #control-ring li {
+    opacity: 1;
+    transition: all var(--timing);
+}
+
+#control-ring .mask {
+    left: 40px;
+    background-image: url(assets/images/mask.png);
+}
+
+#control-ring .history {
+    left: 80px;
+    background-image: url(assets/images/history.png);
+}
+
+#control-ring .message {
+    left: 120px;
+    background-image: url(assets/images/message.png);
+}
+
+#control-ring .setting {
+    left: 160px;
+    background-image: url(assets/images/setting.png);
+}
+
+#control-ring .sign {
+    left: 200px;
+    background-image: url(assets/images/signin.png);
+}
+
+/*对于右上角的红点样式处理*/
+.button .unread {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    background-color: red;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    right: -25%;
 }
