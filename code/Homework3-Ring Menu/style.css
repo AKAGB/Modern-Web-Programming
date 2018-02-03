@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    height: inherit;
+    background-color: white;
+}
+
+#at-plus-container {
+    margin: auto;
+}
+
+.apb .icon {
+    background-color: rgba(48, 63, 159, 0.4);
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    transition: all 1s;
+    background-image: url(assets/images/atplus_white.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.apb .icon:hover {
+    background-color: rgba(48, 63, 159, 1);
+    height: 80px;
+    width: 80px;
+    background-image: url(assets/images/atplus_green.png);
+}
