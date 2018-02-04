@@ -1,0 +1,84 @@
+@font-face {
+    font-family: "Emblema One";
+    src: url("../fonts/EmblemaOne-Regular.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000 url(../images/bg3.jpg) no-repeat;
+    color: #eee;
+    font-size: large;
+    font-family: Verdana, Tahoma, sans-serif;
+    --timing: 0.3s;
+}
+
+nav {
+    background-color: #000;
+    color: #fff;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 20px 0px;
+}
+
+nav ul li {
+    display: inline;
+    padding: 20px 20px;
+}
+
+nav ul li a:link, nav ul li a:visited {
+    color: #eee;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li.selected {
+    background-color: #444;
+}
+
+footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 0px;
+    font-size: 90%;
+}
+
+section#main {
+    text-align: center;
+}
+
+section h1 {
+    font-family: "Emblema One";
+    font-size: 2em;
+    margin: 20px;
+}
+
+#main .hw {
+    margin: 30px auto;
+    height: 80px;
+    width: 300px;
+    line-height: 80px;
+    background-color: #888;
+    font-size: 1.2em;
+    border-radius: 10px;
+    box-shadow: 5px 5px #444;
+    transition: all var(--timing);
+}
+
+#main .hw:hover {
+    transform: scale(1.1, 1.1);
+    color: skyblue;
+    transition: all var(--timing);
+}
+
+#main .hw a {
+    text-decoration: none;
+    color: inherit;
+}
