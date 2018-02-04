@@ -5,7 +5,7 @@
 
 html {
     height: 100%;
-    --timing: 0.5s;
+    --timing: 0.8s;
     --delay: 0.3s;
 }
 
@@ -26,16 +26,16 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 80%;
-    height: 32px;
-    width: 32px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
     transition: all var(--timing) ease var(--delay);
 }
 
 #at-plus-container:hover .icon {
     background-color: rgba(48, 63, 159, 1);
-    height: 50px;
-    width: 50px;
+    height: 35px;
+    width: 35px;
     background-image: url(assets/images/atplus_green.png);
     transition: all var(--timing) ease;
 }
@@ -48,61 +48,167 @@ body {
 
 #control-ring li {
     position: absolute;
-    height: 45px;
-    width: 45px;
+    height: 25px;
+    width: 25px;
     background-color: rgba(51, 51, 51, 0.7);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 75%;
     border-radius: 50%;
     list-style-type: none;
 
+    /*功能栏初始位置*/
+    left: 0px;
+    top: 0px;
+
     /*隐藏功能栏*/
-    opacity: 1;
+    opacity: 0;
+    visibility: hidden;
     transition: all var(--timing);
+    transition-delay: var(--delay);
+    transform: scale(0.1, 0.1);
+    transform-origin: left center;
 }
 
 /*显示功能栏*/
 #at-plus-container:hover #control-ring li {
     opacity: 1;
+    visibility: visible;
+    transform: scale(1, 1);
     transition: all var(--timing);
 }
 
 #control-ring .mask {
-    left: 40px;
     background-image: url(assets/images/mask.png);
 }
 
 #control-ring .history {
-    left: 80px;
     background-image: url(assets/images/history.png);
 }
 
 #control-ring .message {
-    left: 120px;
     background-image: url(assets/images/message.png);
 }
 
 #control-ring .setting {
-    left: 160px;
     background-image: url(assets/images/setting.png);
 }
 
 #control-ring .sign {
-    left: 200px;
     background-image: url(assets/images/signin.png);
+}
+
+/*hover 后的位置*/
+#at-plus-container:hover #control-ring .mask {
+    left: -42px;
+    top: -23px;
+}
+
+#at-plus-container:hover #control-ring .history {
+    left: -51px;
+    top: 8px;
+}
+
+#at-plus-container:hover #control-ring .message {
+    left: -38px;
+    top: 39px;
+}
+
+#at-plus-container:hover #control-ring .setting {
+    left: -8px;
+    top: 56px;
+}
+
+#at-plus-container:hover #control-ring .sign {
+    left: 25px;
+    top: 50px;
 }
 
 /*对于右上角的红点样式处理*/
 .button .unread {
     position: absolute;
-    height: 25px;
-    width: 25px;
+    height: 55%;
+    width: 55%;
     background-color: red;
     border-radius: 50%;
     text-align: center;
-    line-height: 25px;
+    line-height: 120%;
     color: white;
-    font-size: large;
+    font-size: 0.6em;
     font-weight: bold;
     right: -25%;
+    top: -15%;
+}
+
+/*状态栏设置*/
+#button {
+    position: relative;
+}
+
+#info-bar {
+    width: 90px;
+    height: 90px;
+    background-color: rgba(51, 51, 51, 0.7);
+    border-radius: 50%;
+    position: absolute;
+    transition: all var(--timing) ease var(--delay);
+    /*初始位置*/
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.1, 0.1);
+    transform-origin: 0 0 0;
+}
+
+/*hover 后状态*/
+#at-plus-container:hover #info-bar {
+    transform: scale(1, 1);
+    top: -106px;
+    left: -21px;
+    opacity: 1;
+    visibility: visible;
+    transition: all var(--timing);
+}
+
+#info-bar .info ul {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
+
+#info-bar .info li {
+    list-style-type: none;
+}
+
+#info-bar .info li img {
+    width: 15px;
+    height: 15px;
+}
+
+#info-bar .info li span {
+    font-weight: bold;
+    margin: 5px;
+}
+
+#info-bar .info .page {
+    color: white;
+}
+
+#info-bar .info .user {
+    font-weight: normal;
+}
+
+#info-bar .info .comment {
+    font-size: 1.2em;
+}
+
+#info-bar .info .mine {
+    display: inline;
+    color: #21D993;
 }
