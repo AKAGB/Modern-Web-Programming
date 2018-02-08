@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    height: inherit;
+    background: skyblue;
+}
+
+section#main {
+    margin: auto;
+}
+
+#main h1 {
+    text-align: center;
+    font-size: 30px;
+    color: green;
+    font-family: sans-serif;
+}
+
+#Calculator {
+    padding: 5px;
+    text-align: center;
+    border: solid #666 3px;
+    border-radius: 10px;
+    width: 400px;
+    height: 580px;
+}
+
+#display {     /*显示框*/
+    height: 20%;
+    border: inset #ccc 5px;
+}
+
+#button {
+    margin: 15px;
+}
+
+#button input {
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+    font-size: 30px;
+    border: outset #ccc 2px;
+    margin: 3px;
+}
+
+#button input:active {
+    border-style: inset;
+}
+
+#button input:focus {
+    outline: none;
+}
+
+#equality {
+    background-color: pink;
+}
