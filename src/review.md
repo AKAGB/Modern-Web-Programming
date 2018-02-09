@@ -107,62 +107,62 @@ body {
 
 2. 如果本地没有`jQuery`库可以在`<head>`引入：
 
-    ```html
-    <head>
-        <!-- x的部分是版本号 -->
-        <script src="//code.jquery.com/jquery-x.xx.x.min.js"></script>
-        ...
-    </head>
-    ```
+  ```html
+   <head>
+       <!-- x的部分是版本号 -->
+       <script src="//code.jquery.com/jquery-x.x.x.min.js"></script>
+       ...
+   </head>
+  ```
 
 3. `inline-block`既具备了行内元素和块级元素的特点，既能够让元素能向行内元素一样横向显示，又能够规定其`width`和`height`，但有一个小缺陷，就是它会产生一点空白，以一个导航栏为例：
 
-    html:
+  html:
 
-    ```html
-    <nav>
-        <ul>
-            <li>HOME</li>
-            <li>MUSIC</li>
-            <li>IMAGE</li>
-            <li>BLOG</li>
-            <li>ABOUT</li>
-        </ul>
-    </nav>
-    ```
+  ```html
+   <nav>
+       <ul>
+           <li>HOME</li>
+           <li>MUSIC</li>
+           <li>IMAGE</li>
+           <li>BLOG</li>
+           <li>ABOUT</li>
+       </ul>
+   </nav>
+  ```
 
-    css:
+  css:
 
-    ```css
-    ul li {
-        list-style-type: none;
-        display: inline-block;
-        width: 80px;
-        height: 50px;
-        background-color: skyblue;
-        border: 1px solid black;
-        text-align: center;
-        line-height: 50px;
-    }
-    ```
+  ```css
+   ul li {
+       list-style-type: none;
+       display: inline-block;
+       width: 80px;
+       height: 50px;
+       background-color: skyblue;
+       border: 1px solid black;
+       text-align: center;
+       line-height: 50px;
+   }
+  ```
 
-    显示效果为：
+  显示效果为：
 
-    ![nav1](images/nav1.png)
+  ![nav1](images/nav1.png)
 
-    可以看到有很明显的间距，虽然`margin`和`padding`设置为0后依然存在，消除的方法为：将父级元素`ul`添加css`font-size: 0;`，为了让字体能显示`li`中再设置字体：
+  可以看到有很明显的间距，虽然`margin`和`padding`设置为0后依然存在，消除的方法为：将父级元素`ul`添加css`font-size: 0;`，为了让字体能显示`li`中再设置字体：
 
-    ```css
-    ul {
-        font-size: 0;
-    }
+  ```css
+   ul {
+       font-size: 0;
+   }
 
-    ul li {
-        ...
-        font-size: 16px;
-    }
-    ```
+   ul li {
+       ...
+       font-size: 16px;
+   }
+  ```
 
-    显示效果为：
+  显示效果为：
 
-    ![nav2](images/nav2.png)
+  ![nav2](images/nav2.png)
