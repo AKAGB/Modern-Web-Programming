@@ -166,3 +166,80 @@ body {
   显示效果为：
 
   ![nav2](images/nav2.png)
+
+## 三、JavaScript -- Event
+
+事件传播通常有三个阶段：事件捕获阶段、事件目标阶段、事件冒泡阶段，先捕获再冒泡，因为捕获阶段很少用，所以常被人们忽略。
+
+### 1. 事件冒泡
+
+事件冒泡指的是当前目标元素触发时间的发生，事件会向祖先元素传播，进而在祖先元素上触发相同的事件，当子元素都有同一时间处理程序时，事件冒泡可以减少代码的冗余度，通过给`addEventListener()`第三个参数传递`false`表示为执行事件冒泡，但通常默认情况下就是冒泡。`true`表示执行捕获。举个简单例子：
+
+```html
+<div class="ele0">
+    <div class="ele1">
+        <div class="ele2"></div>
+    </div>
+</div>
+```
+
+三重div显示效果为：
+
+![div](images/div.png)
+
+`JavaScript`脚本为：
+
+```javascript
+window.onload=function() {
+    var ele = document.getElementsByTagName('div');
+
+    if (ele[0].addEventListener) {
+        ele[0].addEventListener('click', function () {
+            console.log('点击的是盒子ele0!');
+        });
+    }
+    else {
+        ele[0].attachEvent('onclick', function() {
+            console.log('点击的是盒子ele0!');
+        })
+    }
+
+    if (ele[1].addEventListener) {
+        ele[1].addEventListener('click', function () {
+            console.log('点击的是盒子ele1!');
+        });
+    }
+    else {
+        ele[1].attachEvent('onclick', function() {
+            console.log('点击的是盒子ele1!');
+        })
+    }
+
+    if (ele[2].addEventListener) {
+        ele[2].addEventListener('click', function () {
+            console.log('点击的是盒子ele2!');
+        });
+    }
+    else {
+        ele[2].attachEvent('onclick', function() {
+            console.log('点击的是盒子ele2!');
+        })
+    }
+}
+```
+
+即当点击哪个`div`就会在控制台中显示，当我们点击`ele2`也就是最里面的盒子时，控制台显示为：
+
+![console](images/console.png)
+
+显然可以看到事件从`ele2`传递到`ele1`，再传递到`ele0`，像是气泡一样从事件发生的地方逐层向上到最高级的元素，这就是事件冒泡。
+
+### 2. 事件捕获
+
+事件捕获过程和冒泡是相反的过程，事件由祖先元素向子元素传播，要说明的是在IE和opera浏览器中不存在这个阶段。继续刚刚那个例子，如果给每个监听器的第三个参数添加`true`，并且点击`ele2`时，控制台显示为：
+
+![console2](images/console2.png)
+
+### 3. 阻止事件冒泡
+
+有的时候我们可能并不希望事件冒泡的发生，在除了IE以外的浏览器中通过`e.stopPropagation()`方法阻止冒泡（`e`为事件参数）。在jQuery中通过实践回调利用`return false;`
