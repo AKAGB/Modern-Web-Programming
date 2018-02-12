@@ -1,0 +1,115 @@
+@font-face {
+    font-family: Verdana;
+    src(../../src/fonts/Verdana.ttf)
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+    text-align: center;
+    font-size: large;
+    background-color: skyblue;
+}
+
+h1 {
+    font-weight: normal;
+}
+
+#Score {
+    width: 450px;
+    height: 70px;
+    margin: 10px auto;
+    position: relative;
+}
+
+#Score input[type="button"] {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 24px;
+    width: 170px;
+    background-color: #fff;
+    border: 2px outset #aaa;
+    border-radius: 5px;
+}
+
+#Score input[type="button"]:focus {
+    outline: none;
+}
+
+#Score input[type="button"]:active {
+    border-style: inset;
+}
+
+#Score > input[type="text"] {
+    position: absolute;
+    background-color: #fff;
+    color: black;
+    width: 170px;
+    height: 24px;
+    left: 5px;
+    bottom: 0;
+    padding-left: 2px;
+}
+
+#Score label:nth-of-type(1) {
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+#Score label:nth-of-type(1) input, #Score label:nth-of-type(2) input {
+    height: 24px;
+    background-color: #fff;
+    color: black;
+}
+
+#Score label:nth-of-type(2) {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+#gameMain {
+    width: 700px;
+    height: 420px;
+    margin: 20px auto;
+    padding: 5px 0px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    font-size: 0;
+    text-align: left;
+}
+
+#ins {
+    width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#ins h2 {
+    font-size: 1em;
+    margin-top: 40px;
+}
+
+#ins ol {
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.hole {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    background-image: url(images/box.png);
+    background-size: 100%;
+}
+
+.selected {
+    background-image: url(images/xiaoyou.png);
+}
