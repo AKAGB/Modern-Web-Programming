@@ -451,3 +451,47 @@ var ninja = {
     }
 };
 ```
+
+## 九、一些技巧
+
+### 1\. 获取Max/Min
+
+```javascript
+// 获取 array 的最大最小值
+function smallest(array) {
+    return Math.min.apply(Math, array);
+}
+function largest(array) {
+    return Math.max.apply(Math, array);
+}
+
+// 获取 arguments 的最大最小值，同上
+function smallest() {
+    return Math.min.apply(Math, arguments);
+}
+function largest(array) {
+    return Math.max.apply(Math, arguments);
+}
+```
+
+我们通常会遇到需要把`arguments`转成`Array`的情况，比如想调用`sort`方法时，应该使用`Array`对象。
+
+```javascript
+// 错误示范
+function highest() {
+    return arguments.sort(function (a, b) {
+        return b - a;   // 降序
+    });
+}
+```
+
+这么做会报错，因为`arguments`对象没有`sort`方法，应该把`arguments`转成`Array`，正确做法为：
+
+```javascript
+function highest() {
+    // 或者可以用 Array.prototype.slice.call
+    return Array().slice.call(arguments).sort(function (a, b) {
+        return b - a;   // 降序
+    });
+}
+```
