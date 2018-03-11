@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: inherit;
+}
+
+form {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 300px;
+    height: 260px;
+    margin: auto;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px #ccc;
+}
+
+label {
+    display: inline-block;
+    margin: 8px;
+    text-align: right;
+    width: 64px;
+}
+
+h1 {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+button {
+    width: 60px;
+    height: 30px;
+    font-size: 0.8em;
+    margin-top: 10px;
+    border-radius: 2px;
+    background-color: #ddd;
+    outline: none;
+}
+
+button:nth-of-type(1) {
+    margin-left: 120px;
+}
+
+input[type="text"], input[type="email"] {
+    width: 175px;
+}
