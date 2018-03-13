@@ -5,14 +5,18 @@ var _ = require('lodash');
 // 存放用户数据
 var usr_datas = {};
 
-function start(request, response) {
+function start(request, response, qs) {
     // 加载表单
     console.log('Start is called...');
-    response.writeHead(200, {'Content-Type': 'text/html'});
-    fs.createReadStream('./html/sign_up.html').pipe(response);
+    response.writeHead(200, {'Content-Type': 'text/html; charset="utf-8"'});
+    if (qs.username && usr_datas[qs.username]) {
+        response.end(detail(qs.username));
+    } else {
+        fs.createReadStream('./html/sign_up.html').pipe(response);
+    }
 }
 
-function upload(request, response) {
+function upload(request, response, qs) {
     // 返回表单结果
     var form = formidable.IncomingForm();
     form.encoding = 'utf-8';
@@ -130,6 +134,5 @@ function load() {
 module.exports = {
     start: start,
     upload: upload,
-    load: load,
-    detail: detail
+    load: load
 };

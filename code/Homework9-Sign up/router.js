@@ -1,4 +1,6 @@
 var fs = require('fs');
+var url = require('url');
+var querystring = require('querystring');
 
 function route(handle, request, response) {
     var
@@ -6,7 +8,7 @@ function route(handle, request, response) {
         qs = querystring.parse(url.parse(request.url).query);
     console.log('Request for ' + pathname);
     if (typeof handle[pathname] === 'function') {
-        handle[pathname](request, response);
+        handle[pathname](request, response, qs);
     }
     else {
         // 请求其他文件如css、js
