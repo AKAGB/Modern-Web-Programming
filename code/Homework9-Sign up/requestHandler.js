@@ -29,7 +29,7 @@ function upload(request, response) {
             if (repeat) {
                 body = fail(repeat);
             } else {
-                body = success(fields.user_id);
+                body = detail(fields.user_id);
             }
             response.writeHead(200, {'Content-Type': 'text/html; charset="utf-8"'});
             response.write(body);
@@ -62,12 +62,14 @@ function checkData(fields) {
             'phone': fields.phone,
             'email': fields.email
         };
+        // 保存新的数据
+        save();
     }
 
     return result;
 }
 
-function success(user_id) {
+function detail(user_id) {
     return '<!DOCTYPE html>' +
             '<html>' +
                 '<head>' +
@@ -105,7 +107,8 @@ function fail(warning) {
 }
 
 function save() {
-    writeFile('user_info.json', JSON.stringify(usr_datas), function (err) {
+    // 保存用户数据
+    fs.writeFile('user_info.json', JSON.stringify(usr_datas), function (err) {
         if (err) {
             console.log('Save failed.');
         } else {
@@ -114,7 +117,19 @@ function save() {
     });
 }
 
+function load() {
+    // 加载用户数据
+    try {
+        usr_datas = JSON.parse(fs.readFileSync('user_info.json', 'utf-8'));
+    } catch(e) {
+        usr_datas = {};
+        console.log('No such file(user_info.json).')
+    }
+}
+
 module.exports = {
     start: start,
-    upload: upload
+    upload: upload,
+    load: load,
+    detail: detail
 };

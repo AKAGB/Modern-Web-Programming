@@ -9,4 +9,5 @@ var handle = {
     '/upload': requestHandler.upload
 };
 
+requestHandler.load();
 server.start(router.route, handle);

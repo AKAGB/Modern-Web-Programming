@@ -1,11 +1,11 @@
 var http = require('http');
 var url = require('url');
+var querystring = require('querystring');
 
 function start(route, handle) {
     http.createServer(function (request, response) {
-        var pathname = url.parse(request.url).pathname;
-        console.log('Request for ' + pathname);
-        route(pathname, handle, request, response);
+
+        route(handle, request, response);
     }).listen('8080');
     console.log('Server is running at http://localhost:8080...');
 }
