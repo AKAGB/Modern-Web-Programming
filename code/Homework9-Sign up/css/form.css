@@ -17,19 +17,13 @@ form, section {
     bottom: 0;
     left: 0;
     right: 0;
-    width: 300px;
+    width: 350px;
     height: 260px;
     margin: auto;
     border: 1px solid black;
     text-align: center;
     border-radius: 10px;
     box-shadow: 10px 10px 20px #ccc;
-}
-
-section p {
-    text-align: left;
-    font-size: 1em;
-    margin: 8px;
 }
 
 label {
@@ -61,4 +55,36 @@ button:nth-of-type(1) {
 
 input[type="text"], input[type="email"] {
     width: 175px;
+}
+
+.container {
+    display: table;
+    vertical-align: top;
+}
+
+.tableRow {
+    display: table-row;
+}
+
+.tableCol {
+    display: table-cell;
+}
+
+section p {
+    text-align: left;
+    font-size: 1em;
+    margin: 20px 15px;
+    width: 150px;
+}
+
+.info {
+    text-align: right;
+    width: 80px;
+}
+
+#warning {
+    text-align: center;
+    width: 350px;
+    margin: 20px 0;
+    font-size: 1.2em;
 }
