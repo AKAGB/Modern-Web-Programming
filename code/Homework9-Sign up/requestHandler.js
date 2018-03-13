@@ -1,5 +1,5 @@
 var fs = require('fs');
-var formidable = require('/usr/lib/node_modules/formidable');
+var formidable = require('formidable');
 var _ = require('lodash');
 
 // 存放用户数据
@@ -23,8 +23,14 @@ function upload(request, response) {
         } else {
             // 检查是否有重复的属性
             var repeat = checkData(fields);
-            var body = success();
-
+            var body;
+            // 若有重复信息，则告诉用户是什么重复
+            // 若无重复信息，则返回用户详情
+            if (repeat) {
+                body = fail(repeat);
+            } else {
+                body = success(fields.user_id);
+            }
             response.writeHead(200, {'Content-Type': 'text/html; charset="utf-8"'});
             response.write(body);
             response.end();
@@ -50,7 +56,7 @@ function checkData(fields) {
 
     if (!result) {
         // 空串说明没有重复，在usr_datas添加新成员
-        usr_datas[fields.stu_id] = {
+        usr_datas[fields.user_id] = {
             'user_id': fields.user_id,
             'stu_id': fields.stu_id,
             'phone': fields.phone,
@@ -61,7 +67,7 @@ function checkData(fields) {
     return result;
 }
 
-function success() {
+function success(user_id) {
     return '<!DOCTYPE html>' +
             '<html>' +
                 '<head>' +
@@ -81,10 +87,10 @@ function success() {
                                     '<p class="info">邮箱：</p>' +
                                 '</div>' +
                                 '<div class="tableCol">' +
-                                    '<p>DreamGQK</p>' +
-                                    '<p>16337064</p>' +
-                                    '<p>15829090995</p>' +
-                                    '<p>gongqk@qq.com</p>' +
+                                    '<p>' + usr_datas[user_id].user_id + '</p>' +
+                                    '<p>' + usr_datas[user_id].stu_id + '</p>' +
+                                    '<p>' + usr_datas[user_id].phone + '</p>' +
+                                    '<p>' + usr_datas[user_id].email + '</p>' +
                                 '</div>' +
                             '</div>' +
                         '</div>' +
@@ -93,8 +99,9 @@ function success() {
             '</html>';
 }
 
-function fail() {
-    
+function fail(warning) {
+    return '<script>window.onload=function () { alert(`' + warning + '`);' +
+         'window.location.href = "http://localhost:8080/";}</script>';
 }
 
 module.exports = {
