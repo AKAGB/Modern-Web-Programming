@@ -104,6 +104,16 @@ function fail(warning) {
          'window.location.href = "http://localhost:8080/";}</script>';
 }
 
+function save() {
+    writeFile('user_info.json', JSON.stringify(usr_datas), function (err) {
+        if (err) {
+            console.log('Save failed.');
+        } else {
+            console.log('Save ok!');
+        }
+    });
+}
+
 module.exports = {
     start: start,
     upload: upload
