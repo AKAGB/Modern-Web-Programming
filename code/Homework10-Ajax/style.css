@@ -13,6 +13,7 @@ body {
     display: grid;
     height: inherit;
     background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #at-plus-container {
@@ -34,7 +35,7 @@ body {
 
 /*去掉hover以测试*/
 #at-plus-container .icon {
-    background-color: rgba(48, 63, 159, 1);
+    background-color: #44547b;
     height: 35px;
     width: 35px;
     background-image: url(assets/images/atplus_green.png);
@@ -51,7 +52,7 @@ body {
     position: absolute;
     height: 25px;
     width: 25px;
-    background-color: rgba(51, 51, 51, 0.7);
+    background-color: #44547b;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 75%;
@@ -113,7 +114,7 @@ body {
     position: absolute;
     height: 55%;
     width: 55%;
-    background-color: red;
+    background-color: #f84138;
     border-radius: 50%;
     text-align: center;
     line-height: 120%;
@@ -124,16 +125,23 @@ body {
     top: -15%;
 }
 
+#main {
+    position: relative;
+}
+
 /*状态栏设置*/
-#button {
+.button {
     position: relative;
     text-align: center;
+    font-weight: bold;
+    color: #1a8e7d;
+    line-height: 1.5;
 }
 
 #info-bar {
     width: 90px;
     height: 90px;
-    background-color: rgba(51, 51, 51, 0.7);
+    background-color: #7e7e7e;
     border-radius: 50%;
     position: absolute;
     transition: all var(--timing) ease var(--delay);
@@ -144,6 +152,13 @@ body {
     visibility: hidden;
     transform: scale(0.1, 0.1);
     transform-origin: 0 0 0;
+
+    /* 显示数字 */
+    font-size: 1.2em;
+    color: #45dfa6;
+    text-align: center;
+    font-weight: bold;
+    line-height: 90px;
 }
 
 /*hover 后状态*/
