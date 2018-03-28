@@ -6,26 +6,31 @@ $(function() {
         calc_flag = true,                       // 记录计算结果
         calc_result = 0;
     
-    Initial();
-    
-    
+    $('#bottom-positioner').mouseout(check_init);
+    Initial();    
 
     /*          *\
         函数定义
     \*          */
 
     function Initial() {
+        calc_flag = true,                       // 记录计算结果
+        calc_result = 0;
         buttons.off();
         resultDiv.off();
-        buttons.click(function() {
-            $(this).find('.request-number').text('...');
-            get_num(this);
-            check_num();
-            $(this).off('click');
-        });
+        buttons
+            .click(function() {
+                $(this).find('.request-number').text('...');
+                get_num(this);
+                check_num();
+                $(this).off('click');
+            });
+        
+
         _.map(num_blocks, function(o) {
-            o.textContent = "";
+            o.textContent = '';
         });
+        resultDiv.text('');
         check_num();
     }
 
@@ -83,8 +88,11 @@ $(function() {
     function check_init() {
         // 等动画执行完毕再检查
         setTimeout(function() {
-            if (resultDiv.css('left') == '0' && resultDiv.css('top') == '0') 
+            console.log(resultDiv.css('left')+','+resultDiv.css('top'));
+            if (resultDiv.css('left') == '0px' && resultDiv.css('top') == '0px') {
+                console.log(2);
                 Initial();
-        }, 800);
+            }
+        }, 1100);
     }
 });
