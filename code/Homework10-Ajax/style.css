@@ -10,13 +10,21 @@ html {
 }
 
 body {
-    display: grid;
     height: inherit;
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 #at-plus-container {
+    display: grid;
+    height: 100%;
+    width: 500px;
+    margin: auto;
+}
+
+#bottom-positioner {
+    width: 20px;
+    height: 20px;
     margin: auto;
 }
 
@@ -34,7 +42,7 @@ body {
 }
 
 /*去掉hover以测试*/
-#at-plus-container .icon {
+#bottom-positioner:hover .icon {
     background-color: #44547b;
     height: 35px;
     width: 35px;
@@ -74,7 +82,7 @@ body {
 
 /*显示功能栏*/
 /*去掉hover以测试*/
-#at-plus-container #control-ring li {
+#bottom-positioner:hover #control-ring li {
     opacity: 1;
     visibility: visible;
     transform: scale(1, 1);
@@ -83,27 +91,27 @@ body {
 
 /*hover 后的位置*/
 /*去掉hover以测试*/
-#at-plus-container .A {
+#bottom-positioner:hover .A {
     left: -42px;
     top: -23px;
 }
 
-#at-plus-container .B {
+#bottom-positioner:hover .B {
     left: -51px;
     top: 8px;
 }
 
-#at-plus-container .C {
+#bottom-positioner:hover .C {
     left: -38px;
     top: 39px;
 }
 
-#at-plus-container .D {
+#bottom-positioner:hover .D {
     left: -8px;
     top: 56px;
 }
 
-#at-plus-container .E {
+#bottom-positioner:hover .E {
     left: 25px;
     top: 50px;
 }
@@ -123,6 +131,7 @@ body {
     font-weight: bold;
     right: -25%;
     top: -15%;
+    opacity: 0;
 }
 
 #main {
@@ -163,7 +172,7 @@ body {
 
 /*hover 后状态*/
 /*去掉hover以测试*/
-#at-plus-container #info-bar {
+#bottom-positioner:hover #info-bar {
     transform: scale(1, 1);
     top: -106px;
     left: -21px;
