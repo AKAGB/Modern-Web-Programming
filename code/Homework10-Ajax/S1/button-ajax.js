@@ -18,8 +18,7 @@ $(function() {
         calc_result = 0;
         buttons.off();
         resultDiv.off();
-        buttons
-            .click(function() {
+        buttons.click(function() {
                 $(this).find('.request-number').text('...');
                 get_num(this);
                 check_num();
@@ -53,6 +52,7 @@ $(function() {
     }
 
     // 本地测试生成随机数
+    /*
     function get_num(clk_btn) {
         var random_time = 1000 + getRandomNumber(2000);
         var random_num  = 1 + getRandomNumber(9);
@@ -64,6 +64,18 @@ $(function() {
 
     function getRandomNumber(limit) {
         return Math.round(Math.random() * limit);
+    }
+    */
+
+    // ajax请求随机数
+    function get_num(clk_btn) {
+        let ajax_result = $.ajax('/get_number')
+            .done(function (data) {
+                $(clk_btn).find('.request-number').text(data);
+                check_num();
+            }).fail(function () {
+                console.log('Fail!');
+            });
     }
 
     // 激活大气泡
@@ -88,11 +100,8 @@ $(function() {
     function check_init() {
         // 等动画执行完毕再检查
         setTimeout(function() {
-            console.log(resultDiv.css('left')+','+resultDiv.css('top'));
-            if (resultDiv.css('left') == '0px' && resultDiv.css('top') == '0px') {
-                console.log(2);
+            if (resultDiv.css('left') == '0px' && resultDiv.css('top') == '0px') 
                 Initial();
-            }
         }, 1100);
     }
 });
