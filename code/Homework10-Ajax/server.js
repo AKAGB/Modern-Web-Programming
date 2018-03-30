@@ -7,6 +7,7 @@ var port = 3000;
 http.createServer(function(req,res){
   var pathname = url.parse(req.url).pathname;
   var mimeType = getMimeType(pathname);
+  console.log('Request for ' + pathname);
   if (!!mimeType) {
     handlePage(req, res, pathname);
   } else {
