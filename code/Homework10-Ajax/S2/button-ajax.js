@@ -9,29 +9,35 @@ $(function() {
         rest_buttons = Array.from({length: 5}, (x, y) => y),
         active_button,                          // 当前被点击的button
         ai;                                     // 机器人对象
+        
     
     $('#bottom-positioner').mouseout(check_init);
     Initial();
 
     /* 定义AI对象 */
-    function AI(order) {
-        this.order =  _.clone(order);
+    function AI() {
+        this.order =  [];
         this.now_click = 0;           // 当前点击button，注意是order的下标
+        ai_flag = false;              // AI是否被触发
     }
     AI.prototype.check_complete = function () {
         if (this.now_click < this.order.length)
             return false;
         return true;
     };
-    AI.prototype.ai_button_click = function () {
+    AI.prototype.ai_button_click = function () {    // 点击按钮
         buttons.eq(this.order[this.now_click++]).click();
     };
-    AI.prototype.next = function () {
+    AI.prototype.next = function () {               // 触发下一步操作
         if (this.check_complete()) 
             resultDiv.click();
         else 
             this.ai_button_click();
-    }
+    };
+    AI.prototype.actived = function (order) {
+        this.ai_flag = true;
+        this.order = _.clone(order);
+    };
 
     /*          *\
         函数定义
@@ -47,7 +53,7 @@ $(function() {
         buttons.css('backgroundColor', '#44547b')
                 .click(button_click);
         // 添加大气泡点击事件
-        let e = $._data(a_plus_button, 'events');
+        var e = $._data(a_plus_button, 'events');
         if (!e || !e['click'])
             a_plus_button.click(a_plus_click);
         _.map(num_blocks, function(o) {
@@ -59,6 +65,7 @@ $(function() {
 
     // 点击大气泡事件
     function a_plus_click() {
+        ai.actived(rest_buttons);
         ai.next();
     }
 
@@ -71,14 +78,14 @@ $(function() {
     // button点击回调函数
     function button_click() {
         $(this).find('.request-number').text('...');
-        active_button = rest_buttons.indexOf($(this).index());
+        active_button = $(this).index();
         // 灭活其他按钮
         _.forEach(_.clone(rest_buttons), function (each) {
             buttons.eq(each).off('click');
             if (each != active_button)
                 buttons.eq(each).css('backgroundColor', '#7e7e7e');
         });
-        rest_buttons.splice(active_button, 1);
+        rest_buttons.splice(rest_buttons.indexOf(active_button), 1);
         get_num(this);
         check_num();
     }
@@ -113,7 +120,7 @@ $(function() {
 
     // ajax请求随机数
     function get_num(clk_btn) {
-        let ajax_result = $.ajax('/get_number')
+        var ajax_result = $.ajax('/get_number')
             .always(function () {
                 // 恢复按键并灭活活跃按钮
                 _.forEach(rest_buttons, function (each) {
@@ -126,7 +133,8 @@ $(function() {
             }).done(function (data) {
                 $(clk_btn).find('.request-number').text(data);
                 check_num();
-                ai.next();
+                if (ai.ai_flag)        // 只有激活AI时才继续点击
+                    ai.next();
             }).fail(function () {
                 console.log('Fail!');
             });
