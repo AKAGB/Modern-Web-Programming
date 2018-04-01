@@ -1,53 +1,26 @@
 $(function() {
+    // 关闭浏览器缓存
+    $.ajaxSetup({
+        cache: false
+    });
     var 
         resultDiv = $('#info-bar'),
         buttons = $('.button'),
         num_blocks = $('.request-number'),      // 判断是否已经计算过结果
         a_plus_button = $('.icon'),              // @+按钮
         calc_flag = true,                       // 记录计算结果
-        calc_result = 0,
-        rest_buttons = Array.from({length: 5}, (x, y) => y),
-        active_button,                          // 当前被点击的button
-        ai;                                     // 机器人对象
-        
-    
+        calc_result = 0;
+
     $('#bottom-positioner').mouseout(check_init);
     Initial();
-
-    /* 定义AI对象 */
-    function AI() {
-        this.order =  [];
-        this.now_click = 0;           // 当前点击button，注意是order的下标
-        ai_flag = false;              // AI是否被触发
-    }
-    AI.prototype.check_complete = function () {
-        if (this.now_click < this.order.length)
-            return false;
-        return true;
-    };
-    AI.prototype.ai_button_click = function () {    // 点击按钮
-        buttons.eq(this.order[this.now_click++]).click();
-    };
-    AI.prototype.five_push = function () {               // 触发下一步操作
-        if (this.check_complete()) 
-            resultDiv.click();
-        else 
-            this.ai_button_click();
-    };
-    AI.prototype.actived = function (order) {
-        this.ai_flag = true;
-        this.order = _.clone(order);
-    };
 
     /*          *\
         函数定义
     \*          */
 
     function Initial() {
-        calc_flag = true,                       // 记录计算结果
+        calc_flag = true;                       // 记录计算结果
         calc_result = 0;
-        rest_buttons = Array.from({length: 5}, (x, y) => y);
-        ai = new AI(rest_buttons);
         buttons.off();
         resultDiv.off();
         buttons.css('backgroundColor', '#44547b')
@@ -60,23 +33,16 @@ $(function() {
             o.textContent = '';
         });
         resultDiv.text('');
-        check_num();
+        check_num(); 
     }
 
-    // 点击大气泡事件
+    // 点击@+事件
     function a_plus_click() {
-        $.ajax('/get_number').done(function (data) {
-            $(buttons[0]).find('.request-number').text(data);
-            check_num();
-        }).fail(function () {
-            console.log('Fail!');
+        _.forEach(buttons, function (button) {
+            button.click();
         });
-        $.ajax('/get_number').done(function (data) {
-            $(buttons[1]).find('.request-number').text(data);
-            check_num();
-        }).fail(function () {
-            console.log('Fail!');
-        });
+        
+        $(this).off('click');
     }
 
     // 点击info块的事件，显示计算结果并灭活
@@ -87,9 +53,9 @@ $(function() {
 
     // button点击回调函数
     function button_click() {
-        $(this).find('.request-number').text('...');
-        active_button = $(this).index();
-        rest_buttons.splice(rest_buttons.indexOf(active_button), 1);
+        $(this).css('backgroundColor', '#7e7e7e')
+                .find('.request-number')
+                .text('...');
         get_num(this);
         check_num();
     }
@@ -103,7 +69,7 @@ $(function() {
                 $(o).css('opacity', '1');
             }
         });
-        enable_info();
+        return enable_info();
     }
 
     // 本地测试生成随机数
@@ -125,12 +91,14 @@ $(function() {
     // ajax请求随机数
     function get_num(clk_btn) {
         var ajax_result = $.ajax('/get_number')
-            .always(function () {
-                buttons.eq(active_button)
-                        .css('backgroundColor', '#7e7e7e');
-            }).done(function (data) {
-                $(clk_btn).find('.request-number').text(data);
-                check_num();
+            .done(function (data) {
+                $(clk_btn).off('click')
+                            .find('.request-number')
+                            .text(data);
+                if (check_num()) {
+                    buttons.css('backgroundColor', '#44547b');
+                    resultDiv.click();
+                }
             }).fail(function () {
                 console.log('Fail!');
             });
@@ -152,6 +120,7 @@ $(function() {
             resultDiv.click(click_info);
             calc_flag = false;
         }
+        return allNumbers.length == 5;
     }
 
     // 检查是否处于初始状态
