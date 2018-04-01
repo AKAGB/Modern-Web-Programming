@@ -36,8 +36,21 @@ $(function() {
     };
     AI.prototype.actived = function (order) {
         this.ai_flag = true;
-        this.order = _.clone(order);
+        this.order = this.random_list(order);
+        return this.order;
     };
+    AI.prototype.random_list = function (order) {
+        var result = [];
+        var cln = _.clone(order);
+        var len = order.length;
+        for (var i = len - 1; i >= 0; i--) {
+            var j = Math.round(Math.random() * i);
+            result[i] = cln[j];
+            if (j != i)
+                cln[j] = cln[i];
+        }
+        return result;
+    }
 
     /*          *\
         函数定义
@@ -47,9 +60,10 @@ $(function() {
         calc_flag = true,                       // 记录计算结果
         calc_result = 0;
         rest_buttons = Array.from({length: 5}, (x, y) => y);
-        ai = new AI(rest_buttons);
+        ai = new AI();
         buttons.off();
         resultDiv.off();
+        $('#display-order').css('opacity', '0');
         buttons.css('backgroundColor', '#44547b')
                 .click(button_click);
         // 添加大气泡点击事件
@@ -65,7 +79,9 @@ $(function() {
 
     // 点击大气泡事件
     function a_plus_click() {
-        ai.actived(rest_buttons);
+        $(this).off('click');
+        var order = ai.actived(rest_buttons);
+        display_order(order);
         ai.next();
     }
 
@@ -165,5 +181,16 @@ $(function() {
             if (resultDiv.css('left') == '0px' && resultDiv.css('top') == '0px') 
                 Initial();
         }, 1100);
+    }
+
+    // 显示点击顺序
+    function display_order(order) { 
+        var alphas = ['A', 'B', 'C', 'D', 'E']
+        $('#display-order').text(`order: [${alphas[order[0]]},`
+                                + ` ${alphas[order[1]]},`
+                                + ` ${alphas[order[2]]},`
+                                + ` ${alphas[order[3]]},`
+                                + ` ${alphas[order[4]]}]`)
+                            .css('opacity', '1');
     }
 });

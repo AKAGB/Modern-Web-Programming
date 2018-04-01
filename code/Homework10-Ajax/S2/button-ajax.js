@@ -65,6 +65,7 @@ $(function() {
 
     // 点击大气泡事件
     function a_plus_click() {
+        $(this).off('click');
         ai.actived(rest_buttons);
         ai.next();
     }

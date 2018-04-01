@@ -13,6 +13,7 @@ body {
     height: inherit;
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
 }
 
 #at-plus-container {
@@ -179,4 +180,14 @@ body {
     opacity: 1;
     visibility: visible;
     transition: all var(--timing);
+}
+
+/*显示顺序元素*/
+#display-order {
+    width: 200px;
+    text-align: center;
+    position: relative;
+    top: -120px;
+    left: -80px;
+    opacity: 0;
 }
