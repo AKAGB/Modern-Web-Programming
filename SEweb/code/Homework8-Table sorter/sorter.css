@@ -1,0 +1,31 @@
+body {
+    width: 500px;
+    margin: auto;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #bbb;
+    text-align: left;
+    font-family: Verdana, sans-serif;
+    line-height: 1.2;
+}
+
+thead {
+    background-color: rgb(0, 0, 138);
+    /* background-color: rgb(170, 172, 255); */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+img {
+    float: right;
+    margin: 2px;
+    opacity: 0;
+}
