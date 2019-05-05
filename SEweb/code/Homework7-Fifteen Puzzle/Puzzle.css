@@ -18,9 +18,7 @@ body {
     height: inherit;
     position: relative;
     --tImgL: 400px;
-    background-image: url(images/bg3.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: rgba(246, 255, 205, 0.589);
 }
 
 section {

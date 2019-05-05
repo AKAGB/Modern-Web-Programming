@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <title>box shadow</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: seagreen;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        #box1 {
+            position: relative;
+            width: 22rem;
+            height: 7rem;
+            margin: 0 auto;
+            padding: 1rem;
+            background: linear-gradient(to bottom, rgb(240, 240, 240) 0%, rgb(255, 255, 255) 10%);
+            border-radius: 3px;
+            box-shadow: 1px 2px 3px rgb(255, 255, 255) inset,
+                        0px 0px 3px rgb(0, 0, 0),
+                        0px -4px 2px rgba(0, 0, 0, 0.5) inset, 
+                        0px 3px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        #box2 {
+            height: 100%;
+            width: 100%;
+            background: white;
+            border-radius: 3px;
+            box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.1) inset,
+                        0px 1px 5px rgba(0, 0, 0, 0.1) inset;
+        }
+
+        #box3 {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(30%, -50%);
+
+            width: 4rem;
+            height: 4rem;
+            margin: 0 auto;
+            padding: 0.4rem;
+            background: linear-gradient(to bottom, rgb(240, 240, 240) 0%, rgb(255, 255, 255) 10%);
+            border-radius: 50%;
+            box-shadow: 1px 2px 3px rgb(255, 255, 255) inset,
+                        0px 0px 3px rgb(0, 0, 0),
+                        0px -4px 2px rgba(0, 0, 0, 0.5) inset, 
+                        0px 3px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        #box4 {
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(to bottom, rgb(82, 207, 235) 0%, rgb(66, 162, 188) 100%);
+            border-radius: 50%;
+            box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.2) inset;
+            transition: background-image 0.3s ease-out;
+        }
+ 
+        #box4:hover {
+            background-image: linear-gradient(to bottom, rgb(82, 207, 235) 0%, rgb(82, 207, 235) 100%);
+            cursor: pointer;
+        }
+
+        #box4:active {
+            box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3), inset 0px 3px 4px rgba(0,0,0,0.3);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2">
+        </div>
+        <div id="box3">
+            <div id="box4">
+            </div>
+        </div>
+    </div>
+    <br>
+    
+</body>
+</html>
