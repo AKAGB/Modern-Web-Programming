@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Slider</title>
+<style>
+
+    #container {
+        margin: 0 auto;
+        width: 770px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #img-box {
+        white-space: nowrap;
+        font-size: 0;
+        position: relative;
+    }
+
+    #toLeft, #toRight {
+        width: 32px;
+        height: 80px;
+        background-image: url(images/arrows-30.png);
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        /* display: none; */
+    }
+
+    #toLeft {
+        left: 10px;
+    }
+
+    #toRight {
+        background-position-y: 100%;
+        right: 10px;
+    }
+
+    #pointsContainer {
+        position: absolute;
+        z-index: 10;
+        right:  64px;
+        bottom: 15px;
+
+        width: 42px;
+        height: 12px;
+        font-size: 0px;
+        text-align: center;
+    
+    }
+
+    .points, .active {
+        display: inline-block;
+        background-image: url(images/navigator.png);
+        width: 12px;
+        height: 12px;
+        margin: 0 1px;
+    }
+
+    .active {
+        background-image: url(images/navigator.png);
+        background-position-y: 100%;
+    }
+
+</style>
+
+<script>
+    window.onload = function () {
+        var points = document.getElementsByClassName('points');
+        var changePointState = function () {
+            for (var i = 0; i < points.length; i++) 
+                points[i].classList.remove('active'); 
+            this.classList.add('active');
+        }
+        for (var i = 0; i < points.length; i++) 
+            points[i].onclick = changePointState;   
+    }
+</script>
+
+</head>
+<body>
+    <div id="container">
+        <div id="img-box">
+            <img class="slider-img" src="images/img1.jpg" alt="img1">
+            <img class="slider-img" src="images/img2.jpg" alt="img2">
+            <img class="slider-img" src="images/img3.jpg" alt="img3">
+        </div>
+        <div id="toLeft"></div>
+        <div id="toRight"></div>
+        <div id="pointsContainer">
+            <div id="point1" class="points"></div>
+            <div id="point1" class="points active"></div>
+            <div id="point1" class="points"></div>
+        </div>
+    </div>
+</body>
+</html>

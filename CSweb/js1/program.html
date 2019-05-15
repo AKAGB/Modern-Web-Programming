@@ -1,0 +1,47 @@
+<!DOCTYPE  html>
+<html  lang="zh-cn">
+ <head>
+   <title>编程器</title>
+   <script>
+       function runClick() {
+        var 
+          x = document.getElementById('x'),
+          y = document.getElementById('y'),
+          program = document.getElementById('program');
+          var func = new Function('x', 'y', program.value);
+          func(x.value, y.value);
+          
+       }
+     
+   </script>
+   <style>
+     .form-div {
+       margin: 20px;
+     }
+     .form-label {
+       display: inline-block;
+       width: 80px;
+       text-align: right;
+       margin-right: 10px;
+       vertical-align: top;
+     }
+     #run {
+       transform: translateX(110px);
+       width: 80px;
+     }
+   </style>
+ </head>
+ <body>
+    <h1>编程器</h1>
+    <div class="form-div">
+      <label class="form-label" for="x">x:</label><input type="text" id="x">
+    </div>
+    <div class="form-div">
+        <label class="form-label" for="y">y:</label><input type="text" id="y">
+      </div>
+      <div class="form-div">
+        <label class="form-label" for="program">program:</label><textarea id="program" cols="30" rows="10"></textarea>
+      </div>
+      <button id="run" onclick="runClick()">运行</button>
+ </body>
+</html>
