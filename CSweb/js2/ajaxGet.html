@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>AJAX-get</title>
-  <style>
-     p {font-size:20px}
-   </style>
+    <meta charset="UTF-8">
+    <title>AJAX-get</title>
+    <style>
+        p {
+            font-size: 20px
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Ajax-get</h1>
-  <p>id£º<input id="t1" type="text"></p>
-  <p id="t2">[ÎÞ]</p>
-  <script>
-  </script>
+    <h1>Ajax-get</h1>
+    <p>idï¼š<input id="t1" type="text"></p>
+    <p id="t2">[æ— ]</p>
+    <script>
+        document.getElementById('t1').onblur = function () {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status >= 200 && xmlhttp.status < 300
+                        || xmlhttp.status == 304) {
+                            alert(xmlhttp.responseText);
+                        }
+                    else {
+                        alert('Error');
+                    }
+                }
+            };
+            console.log(this.value);
+            xmlhttp.open('get', '/jsp/get.jsp?id=' + this.value, true);
+            xmlhttp.send(null);
+        }
+    </script>
 </body>
+
 </html>

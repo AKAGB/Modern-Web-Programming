@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rich Text Editing</title>
+    </head>
+
+
+<body>
+    <div id="richedit" contenteditable="true"
+        style="margin: 10px; padding: 10px; width: 400px; height: 200px; border: solid 1px black;"
+        spellcheck="false"></div>
+    <input type="button" value="斜体" onclick="italic()">
+    <input type="button" value="颜色" onclick="color()">
+    <input type="button" value="字号" onclick="fontsize()">
+    <input type="button" value="图像" onclick="picture()">
+    <input type="button" value="链接" onclick="link()">
+    <input type="button" value="撤销" onclick="undo()">
+    <input type="button" value="代码" onclick="show()">
+
+    <input type="color" hidden onchange="changeColor()">
+    <input type="file" hidden onchange="selectImg()">
+
+    <script>
+        function italic() {
+            document.execCommand('italic', false, null);
+        }
+
+        function show() {
+            var o = document.getElementById('richedit');
+            alert(o.innerHTML);
+        }
+
+        function color() {
+            var clickEvent = document.createEvent('MouseEvents'),
+                color = document.querySelector('input[type="color"]');
+            clickEvent.initEvent('click', true, true);
+            color.dispatchEvent(clickEvent);
+        }
+
+        function changeColor() {
+            var color = document.querySelector('input[type="color"]');
+            document.execCommand('forecolor', false, color.value);
+        }
+
+        function fontsize() {
+            var size = prompt('请选择字号（1-7）', '7');
+            document.execCommand('fontsize', false, size);
+        }
+
+        function picture() {
+            var clickEvent = document.createEvent('MouseEvents'),
+                file = document.querySelector('input[type="file"]');
+            clickEvent.initEvent('click', true, true);
+            file.dispatchEvent(clickEvent);
+            
+        }
+
+        function selectImg() {
+            var file = document.querySelector('input[type="file"]'),
+                url = window.URL.createObjectURL(file.files.item(0));
+            document.execCommand('insertimage', false, url);
+        }
+
+        function link() {
+            var href = prompt('请输入连接', 'http://www.sysu.edu.cn/2012/cn/index.htm');
+            document.execCommand('createlink', false, href);
+        }
+
+        function undo() {
+            document.execCommand('undo', false, false);
+        }
+    </script>
+</body>
+</html>

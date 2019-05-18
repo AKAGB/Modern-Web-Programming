@@ -5,6 +5,43 @@
 <style>
 p {font-size:20px}
 </style>
+<script>
+    window.onload = function () {
+        var 
+            body = document.getElementsByTagName('body')[0],
+            h1 = document.createElement('h1');
+            h1Text = document.createTextNode('静夜思'),
+            firstLine = document.createElement('p'),
+            s1 = document.createTextNode('床前明月光'),
+            s2 = document.createTextNode('，疑是地上霜'),
+            s3 = document.createTextNode('。'),
+            idx1 = document.createElement('span');
+
+        h1.appendChild(h1Text);
+        idx1.style.verticalAlign = 'super';
+        idx1.style.fontSize = '12px';
+        var idx2 = idx1.cloneNode();
+        idx1.appendChild(document.createTextNode('(1)'));
+        idx2.appendChild(document.createTextNode('(2)'));
+
+        firstLine.appendChild(s1);
+        firstLine.appendChild(idx1);
+        firstLine.appendChild(s2);
+        firstLine.appendChild(idx2);
+        firstLine.appendChild(s3);
+
+        var secondLine = firstLine.cloneNode(true);
+        secondLine.childNodes[0].nodeValue = '举头望明月';
+        secondLine.childNodes[1].childNodes[0].nodeValue = '(3)';
+        secondLine.childNodes[2].nodeValue = '，低头思故乡';
+        secondLine.childNodes[3].childNodes[0].nodeValue = '(4)';
+
+        body.appendChild(h1);
+        body.appendChild(firstLine);
+        body.appendChild(secondLine);
+    }
+</script>
+
 </head>
 <body>
 
